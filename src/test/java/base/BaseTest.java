@@ -1,26 +1,35 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 
-import io.qameta.allure.testng.AllureTestNg;
+import utils.ConfigReader;
 
-@Listeners(AllureTestNg.class)
 public class BaseTest {
 
     protected WebDriver driver;
+    protected ConfigReader config;
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.get("https://qaplayground.com/bank/login");
+
+        config = new ConfigReader();
+
+        driver = DriverFactory.createDriver(
+                config.get("browser")
+        );
+
+        driver.get(
+                config.get("base.url")
+        );
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
