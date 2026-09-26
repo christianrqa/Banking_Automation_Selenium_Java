@@ -14,7 +14,7 @@ import pages.TransferPage;
 
 public class TransferTest extends BaseTest {
 
-        @Test
+        @Test(groups = "regression")
         public void transferPageDisplayedTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -52,7 +52,7 @@ public class TransferTest extends BaseTest {
                                 "Review Transfer button is not enabled");
         }
 
-        @Test
+        @Test(groups = "regression")
         public void selectTransferAccountsTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -65,7 +65,7 @@ public class TransferTest extends BaseTest {
                 transferPage.selectToAccount("acc-checking-1");
         }
 
-        @Test
+        @Test(groups = "regression")
         public void enterTransferDetailsTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -89,7 +89,7 @@ public class TransferTest extends BaseTest {
                                 "Memo input is not displayed");
         }
 
-        @Test
+        @Test(groups = "regression")
         public void scheduledTransferDateTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -115,7 +115,7 @@ public class TransferTest extends BaseTest {
                 transferPage.enterScheduledDate("2026-09-25");
         }
 
-        @Test
+        @Test(groups = "regression")
         public void reviewTransferTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -165,7 +165,7 @@ public class TransferTest extends BaseTest {
                                 "Incorrect transfer date");
         }
 
-        @Test
+        @Test(groups = "regression")
         public void cancelTransferConfirmationTest() {
 
                 LoginPage loginPage = new LoginPage(driver);
@@ -196,7 +196,7 @@ public class TransferTest extends BaseTest {
                                 "Transfer form was not displayed after cancelling confirmation");
         }
 
-        @Test
+        @Test(groups = "smoke")
         public void confirmTransferTest() {
 
                 LoginPage loginPage = new LoginPage(driver);

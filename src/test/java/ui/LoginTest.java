@@ -11,7 +11,7 @@ public class LoginTest extends BaseTest {
 
     private TestDataReader testData = new TestDataReader();
 
-    @Test
+    @Test (groups = "smoke")
     public void validLoginTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
                 "User was not successfully logged in");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void invalidUsernameTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -38,7 +38,7 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void invalidPasswordTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -51,7 +51,7 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void invalidUsernameAndPasswordTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -65,7 +65,7 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void loginButtonTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -79,7 +79,7 @@ public class LoginTest extends BaseTest {
                 "Login button is not enabled");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void passwordMaskingTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -91,7 +91,7 @@ public class LoginTest extends BaseTest {
                 "Password is not masked");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void emptyUsernameTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -104,7 +104,7 @@ public class LoginTest extends BaseTest {
                 "Expected validation error message was not displayed");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void emptyPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -117,7 +117,7 @@ public class LoginTest extends BaseTest {
                 "Expected validation error message was not displayed");
     }
 
-    @Test
+    @Test (groups = "regression")
     public void emptyUsernameAndPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
 

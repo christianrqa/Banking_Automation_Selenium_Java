@@ -10,7 +10,7 @@ import pages.LoginPage;
 
 public class AccountsTest extends BaseTest {
 
-    @Test
+    @Test(groups = "regression")
     public void accountsDisplayedTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -27,7 +27,7 @@ public class AccountsTest extends BaseTest {
                 "No accounts were displayed"
         );
     }
-    @Test
+    @Test(groups = "regression")
     public void accountNameDisplayedTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -43,7 +43,7 @@ public class AccountsTest extends BaseTest {
             "Account name is not displayed"
     );
     }
-    @Test
+    @Test(groups = "regression")
     public void accountTypeDisplayedTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -59,7 +59,7 @@ public class AccountsTest extends BaseTest {
             "Account type is not displayed"
         );
     }
-    @Test
+    @Test(groups = "regression")
     public void maskedAccountNumberDisplayedTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -75,7 +75,7 @@ public class AccountsTest extends BaseTest {
             "Account number is not displayed"
     );
     }
-    @Test
+    @Test (groups = "regression")
     public void accountBalanceDisplayedTest() {
 
         LoginPage loginPage = new LoginPage(driver);

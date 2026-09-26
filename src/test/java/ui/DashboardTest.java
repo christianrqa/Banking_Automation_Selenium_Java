@@ -9,7 +9,7 @@ import pages.LoginPage;
 
 public class DashboardTest extends BaseTest {
 
-    @Test
+    @Test(groups = "regression")
     public void dashboardDisplayedAfterLoginTest() {
 
         LoginPage loginPage = new LoginPage(driver);
