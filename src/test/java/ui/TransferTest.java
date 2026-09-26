@@ -14,282 +14,251 @@ import pages.TransferPage;
 
 public class TransferTest extends BaseTest {
 
-    @Test
-    public void transferPageDisplayedTest() {
+        @Test
+        public void transferPageDisplayedTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "bank_sauce");
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        TransferPage transferPage = dashboardPage.goToTransferPage();
-        
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-        Assert.assertTrue(
-                transferPage.isFromAccountDropdownDisplayed(),
-                "From Account dropdown is not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isFromAccountDropdownDisplayed(),
+                                "From Account dropdown is not displayed");
 
-        Assert.assertTrue(
-                transferPage.isToAccountDropdownDisplayed(),
-                "To Account dropdown is not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isToAccountDropdownDisplayed(),
+                                "To Account dropdown is not displayed");
 
-        Assert.assertTrue(
-                transferPage.isAmountInputDisplayed(),
-                "Amount input is not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isAmountInputDisplayed(),
+                                "Amount input is not displayed");
 
-        Assert.assertTrue(
-                transferPage.isMemoInputDisplayed(),
-                "Memo input is not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isMemoInputDisplayed(),
+                                "Memo input is not displayed");
 
-        Assert.assertTrue(
-                transferPage.isTodaySelected(),
-                "Today option is not selected by default"
-        );
+                Assert.assertTrue(
+                                transferPage.isTodaySelected(),
+                                "Today option is not selected by default");
 
-        Assert.assertTrue(
-                transferPage.isReviewTransferButtonDisplayed(),
-                "Review Transfer button is not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isReviewTransferButtonDisplayed(),
+                                "Review Transfer button is not displayed");
 
-        Assert.assertTrue(
-                transferPage.isReviewTransferButtonEnabled(),
-                "Review Transfer button is not enabled"
-        );
-    }
-    @Test
-    public void selectTransferAccountsTest() {
+                Assert.assertTrue(
+                                transferPage.isReviewTransferButtonEnabled(),
+                                "Review Transfer button is not enabled");
+        }
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "bank_sauce");
+        @Test
+        public void selectTransferAccountsTest() {
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        TransferPage transferPage = dashboardPage.goToTransferPage();
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-        transferPage.selectFromAccount("acc-savings-1");
-        transferPage.selectToAccount("acc-checking-1");
-    }
-    @Test
-    public void enterTransferDetailsTest() {
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "bank_sauce");
+                transferPage.selectFromAccount("acc-savings-1");
+                transferPage.selectToAccount("acc-checking-1");
+        }
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        TransferPage transferPage = dashboardPage.goToTransferPage();
+        @Test
+        public void enterTransferDetailsTest() {
 
-        transferPage.selectFromAccount("acc-savings-1");
-        transferPage.selectToAccount("acc-checking-1");
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-        transferPage.enterAmount("100.00");
-        transferPage.enterMemo("QA Automation Test");
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-        Assert.assertTrue(
-            transferPage.isAmountInputDisplayed(),
-            "Amount input is not displayed"
-        );
+                transferPage.selectFromAccount("acc-savings-1");
+                transferPage.selectToAccount("acc-checking-1");
 
-        Assert.assertTrue(
-            transferPage.isMemoInputDisplayed(),
-            "Memo input is not displayed"
-        );
-    }
-    @Test
-    public void scheduledTransferDateTest() {
+                transferPage.enterAmount("100.00");
+                transferPage.enterMemo("QA Automation Test");
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "bank_sauce");
+                Assert.assertTrue(
+                                transferPage.isAmountInputDisplayed(),
+                                "Amount input is not displayed");
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        TransferPage transferPage = dashboardPage.goToTransferPage();
+                Assert.assertTrue(
+                                transferPage.isMemoInputDisplayed(),
+                                "Memo input is not displayed");
+        }
 
-        Assert.assertTrue(
-            transferPage.isTodaySelected(),
-            "Today should be selected by default"
-        );
+        @Test
+        public void scheduledTransferDateTest() {
 
-        transferPage.selectScheduled();
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-        Assert.assertTrue(
-            transferPage.isScheduledSelected(),
-            "Scheduled option was not selected"
-        );
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-        Assert.assertTrue(
-            transferPage.isScheduledDateDisplayed(),
-            "Scheduled date input was not displayed"
-        );
+                Assert.assertTrue(
+                                transferPage.isTodaySelected(),
+                                "Today should be selected by default");
 
-        transferPage.enterScheduledDate("2026-09-25");
-    }
-   @Test
-    public void reviewTransferTest() {
+                transferPage.selectScheduled();
 
-    LoginPage loginPage = new LoginPage(driver);
-    loginPage.login("standard_user", "bank_sauce");
+                Assert.assertTrue(
+                                transferPage.isScheduledSelected(),
+                                "Scheduled option was not selected");
 
-    DashboardPage dashboardPage = new DashboardPage(driver);
-    TransferPage transferPage = dashboardPage.goToTransferPage();
+                Assert.assertTrue(
+                                transferPage.isScheduledDateDisplayed(),
+                                "Scheduled date input was not displayed");
 
-    String expectedDate =
-    transferPage.getApplicationTodayDate();
+                transferPage.enterScheduledDate("2026-09-25");
+        }
 
-    transferPage.selectFromAccount("acc-checking-1");
-    transferPage.selectToAccount("acc-savings-1");
+        @Test
+        public void reviewTransferTest() {
 
-    transferPage.enterAmount("231.00");
-    transferPage.enterMemo("QA Automation Test");
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-    transferPage.clickReviewTransfer();
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-    // Verify confirmation screen buttons
-    Assert.assertTrue(
-            transferPage.isConfirmTransferButtonDisplayed(),
-            "Confirm Transfer button was not displayed"
-    );
+                String expectedDate = transferPage.getApplicationTodayDate();
 
-    Assert.assertTrue(
-            transferPage.isCancelConfirmTransferButtonDisplayed(),
-            "Cancel button was not displayed"
-    );
+                transferPage.selectFromAccount("acc-checking-1");
+                transferPage.selectToAccount("acc-savings-1");
 
-    // Verify transfer details
-    Assert.assertEquals(
-            transferPage.getConfirmFromAccount(),
-            "Everyday Checking",
-            "Incorrect From account"
-    );
+                transferPage.enterAmount("231.00");
+                transferPage.enterMemo("QA Automation Test");
 
-    Assert.assertEquals(
-            transferPage.getConfirmToAccount(),
-            "High-Yield Savings",
-            "Incorrect To account"
-    );
+                transferPage.clickReviewTransfer();
 
-    Assert.assertEquals(
-            transferPage.getConfirmAmount(),
-            "$231.00",
-            "Incorrect transfer amount"
-    );
+                // Verify confirmation screen buttons
+                Assert.assertTrue(
+                                transferPage.isConfirmTransferButtonDisplayed(),
+                                "Confirm Transfer button was not displayed");
 
-    Assert.assertEquals(
-            transferPage.getConfirmDate(),
-            expectedDate,
-            "Incorrect transfer date"
-    );
-    }
-    @Test
-    public void cancelTransferConfirmationTest() {
+                Assert.assertTrue(
+                                transferPage.isCancelConfirmTransferButtonDisplayed(),
+                                "Cancel button was not displayed");
 
-    LoginPage loginPage = new LoginPage(driver);
-    loginPage.login("standard_user", "bank_sauce");
+                // Verify transfer details
+                Assert.assertEquals(
+                                transferPage.getConfirmFromAccount(),
+                                "Everyday Checking",
+                                "Incorrect From account");
 
-    DashboardPage dashboardPage = new DashboardPage(driver);
-    TransferPage transferPage = dashboardPage.goToTransferPage();
+                Assert.assertEquals(
+                                transferPage.getConfirmToAccount(),
+                                "High-Yield Savings",
+                                "Incorrect To account");
 
-    transferPage.selectFromAccount("acc-checking-1");
-    transferPage.selectToAccount("acc-savings-1");
+                Assert.assertEquals(
+                                transferPage.getConfirmAmount(),
+                                "$231.00",
+                                "Incorrect transfer amount");
 
-    transferPage.enterAmount("231.00");
-    transferPage.enterMemo("QA Automation Test");
+                Assert.assertEquals(
+                                transferPage.getConfirmDate(),
+                                expectedDate,
+                                "Incorrect transfer date");
+        }
 
-    transferPage.clickReviewTransfer();
+        @Test
+        public void cancelTransferConfirmationTest() {
 
-    // Verify confirmation modal is displayed
-    Assert.assertTrue(
-            transferPage.isConfirmTransferButtonDisplayed(),
-            "Confirmation modal was not displayed"
-    );
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-    // Cancel the transfer
-    transferPage.clickCancelConfirmTransfer();
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-    // Verify we are back on the transfer form
-    Assert.assertTrue(
-            transferPage.isReviewTransferButtonDisplayed(),
-            "Transfer form was not displayed after cancelling confirmation"
-    );
-    }
-    @Test
-public void confirmTransferTest() {
+                transferPage.selectFromAccount("acc-checking-1");
+                transferPage.selectToAccount("acc-savings-1");
 
-    LoginPage loginPage = new LoginPage(driver);
-    loginPage.login("standard_user", "bank_sauce");
+                transferPage.enterAmount("231.00");
+                transferPage.enterMemo("QA Automation Test");
 
-    DashboardPage dashboardPage = new DashboardPage(driver);
-    TransferPage transferPage = dashboardPage.goToTransferPage();
+                transferPage.clickReviewTransfer();
 
-    String expectedDate =
-        LocalDate.parse(
-                transferPage.getApplicationTodayDate()
-        ).format(
-                DateTimeFormatter.ofPattern("MMM d, yyyy")
-        );
+                // Verify confirmation modal is displayed
+                Assert.assertTrue(
+                                transferPage.isConfirmTransferButtonDisplayed(),
+                                "Confirmation modal was not displayed");
 
+                // Cancel the transfer
+                transferPage.clickCancelConfirmTransfer();
 
-    transferPage.selectFromAccount("acc-checking-1");
-    transferPage.selectToAccount("acc-savings-1");
+                // Verify we are back on the transfer form
+                Assert.assertTrue(
+                                transferPage.isReviewTransferButtonDisplayed(),
+                                "Transfer form was not displayed after cancelling confirmation");
+        }
 
-    transferPage.enterAmount("231.00");
-    transferPage.enterMemo("QA Automation Test");
+        @Test
+        public void confirmTransferTest() {
 
-    transferPage.clickReviewTransfer();
+                LoginPage loginPage = new LoginPage(driver);
+                loginPage.login("standard_user", "bank_sauce");
 
-    Assert.assertTrue(
-            transferPage.isConfirmTransferButtonDisplayed(),
-            "Confirm Transfer button was not displayed"
-    );
+                DashboardPage dashboardPage = new DashboardPage(driver);
+                TransferPage transferPage = dashboardPage.goToTransferPage();
 
-    transferPage.clickConfirmTransfer();
+                String expectedDate = LocalDate.parse(
+                                transferPage.getApplicationTodayDate()).format(
+                                                DateTimeFormatter.ofPattern("MMM d, yyyy"));
 
-    TransferConfirmationPage confirmationPage =
-            new TransferConfirmationPage(driver);
+                transferPage.selectFromAccount("acc-checking-1");
+                transferPage.selectToAccount("acc-savings-1");
 
-    Assert.assertTrue(
-            confirmationPage.isSuccessHeadingDisplayed(),
-            "Transfer Successful message was not displayed"
-    );
+                transferPage.enterAmount("231.00");
+                transferPage.enterMemo("QA Automation Test");
 
-    Assert.assertTrue(
-            confirmationPage.getReferenceNumber().matches("TXN-\\d{8}-\\d+"),
-            "Invalid transfer reference number"
-    );
+                transferPage.clickReviewTransfer();
 
-    Assert.assertEquals(
-            confirmationPage.getFromAccount(),
-            "Everyday Checking",
-            "Incorrect From account"
-    );
+                Assert.assertTrue(
+                                transferPage.isConfirmTransferButtonDisplayed(),
+                                "Confirm Transfer button was not displayed");
 
-    Assert.assertEquals(
-            confirmationPage.getToAccount(),
-            "High-Yield Savings",
-            "Incorrect To account"
-    );
+                transferPage.clickConfirmTransfer();
 
-    Assert.assertEquals(
-            confirmationPage.getAmount(),
-            "$231.00",
-            "Incorrect transfer amount"
-    );
+                TransferConfirmationPage confirmationPage = new TransferConfirmationPage(driver);
 
-    Assert.assertEquals(
-        confirmationPage.getTransferDate(),
-        expectedDate,
-        "Incorrect transfer date"
-        );
+                Assert.assertTrue(
+                                confirmationPage.isSuccessHeadingDisplayed(),
+                                "Transfer Successful message was not displayed");
 
-    Assert.assertTrue(
-            confirmationPage.isBackToDashboardButtonDisplayed(),
-            "Back to Dashboard button was not displayed"
-    );
+                Assert.assertTrue(
+                                confirmationPage.getReferenceNumber().matches("TXN-\\d{8}-\\d+"),
+                                "Invalid transfer reference number");
 
-    Assert.assertTrue(
-            confirmationPage.isAnotherTransferButtonDisplayed(),
-            "Make Another Transfer button was not displayed"
-    );
-    }
+                Assert.assertEquals(
+                                confirmationPage.getFromAccount(),
+                                "Everyday Checking",
+                                "Incorrect From account");
+
+                Assert.assertEquals(
+                                confirmationPage.getToAccount(),
+                                "High-Yield Savings",
+                                "Incorrect To account");
+
+                Assert.assertEquals(
+                                confirmationPage.getAmount(),
+                                "$231.00",
+                                "Incorrect transfer amount");
+
+                Assert.assertEquals(
+                                confirmationPage.getTransferDate(),
+                                expectedDate,
+                                "Incorrect transfer date");
+
+                Assert.assertTrue(
+                                confirmationPage.isBackToDashboardButtonDisplayed(),
+                                "Back to Dashboard button was not displayed");
+
+                Assert.assertTrue(
+                                confirmationPage.isAnotherTransferButtonDisplayed(),
+                                "Make Another Transfer button was not displayed");
+        }
 }
-

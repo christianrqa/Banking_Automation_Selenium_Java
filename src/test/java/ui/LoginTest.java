@@ -5,20 +5,24 @@ import org.testng.annotations.Test;
 
 import base.BaseTest;
 import pages.LoginPage;
+import utils.TestDataReader;
 
 public class LoginTest extends BaseTest {
+
+    private TestDataReader testData = new TestDataReader();
 
     @Test
     public void validLoginTest() {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("standard_user", "bank_sauce");
+        loginPage.login(
+                testData.get("standard.username"),
+                testData.get("standard.password"));
 
         Assert.assertTrue(
-            driver.getCurrentUrl().contains("/bank"),
-            "User was not successfully logged in"
-        );
+                driver.getCurrentUrl().contains("/bank"),
+                "User was not successfully logged in");
     }
 
     @Test
@@ -26,12 +30,12 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("invalid_user", "bank_sauce");
-
+        loginPage.login(
+                testData.get("invalid.username"),
+                testData.get("standard.password"));
         Assert.assertTrue(
-            loginPage.isErrorMessageVisible(),
-            "Expected login error message was not displayed"
-        );
+                loginPage.isErrorMessageVisible(),
+                "Expected login error message was not displayed");
     }
 
     @Test
@@ -39,12 +43,12 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("standard_user", "wrong_password");
-
+        loginPage.login(
+                testData.get("standard.username"),
+                testData.get("invalid.password"));
         Assert.assertTrue(
-            loginPage.isErrorMessageVisible(),
-            "Expected login error message was not displayed"
-        );
+                loginPage.isErrorMessageVisible(),
+                "Expected login error message was not displayed");
     }
 
     @Test
@@ -52,12 +56,13 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("invalid_user", "wrong_password");
+        loginPage.login(
+                testData.get("invalid.username"),
+                testData.get("invalid.password"));
 
         Assert.assertTrue(
-            loginPage.isErrorMessageVisible(),
-            "Expected login error message was not displayed"
-        );
+                loginPage.isErrorMessageVisible(),
+                "Expected login error message was not displayed");
     }
 
     @Test
@@ -66,14 +71,12 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
 
         Assert.assertTrue(
-            loginPage.isLoginButtonDisplayed(),
-            "Login button is not displayed"
-        );
+                loginPage.isLoginButtonDisplayed(),
+                "Login button is not displayed");
 
         Assert.assertTrue(
-            loginPage.isLoginButtonEnabled(),
-            "Login button is not enabled"
-        );
+                loginPage.isLoginButtonEnabled(),
+                "Login button is not enabled");
     }
 
     @Test
@@ -81,48 +84,47 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.enterPassword("bank_sauce");
-
+        loginPage.enterPassword(
+                testData.get("standard.password"));
         Assert.assertTrue(
-            loginPage.isPasswordMasked(),
-            "Password is not masked"
-        );
+                loginPage.isPasswordMasked(),
+                "Password is not masked");
     }
-    
+
     @Test
     public void emptyUsernameTest() {
-    LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
-    loginPage.enterPassword("bank_sauce");
-    loginPage.clickLogin();
+        loginPage.enterPassword(
+                testData.get("standard.password"));
+        loginPage.clickLogin();
 
-    Assert.assertTrue(
-        loginPage.isErrorMessageVisible(),
-        "Expected validation error message was not displayed"
-    );
+        Assert.assertTrue(
+                loginPage.isErrorMessageVisible(),
+                "Expected validation error message was not displayed");
     }
+
     @Test
     public void emptyPasswordTest() {
-    LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
-    loginPage.enterUsername("standard_user");
-    loginPage.clickLogin();
+        loginPage.enterUsername(
+                testData.get("standard.username"));
+        loginPage.clickLogin();
 
-    Assert.assertTrue(
-        loginPage.isErrorMessageVisible(),
-        "Expected validation error message was not displayed"
-    );
+        Assert.assertTrue(
+                loginPage.isErrorMessageVisible(),
+                "Expected validation error message was not displayed");
     }
 
     @Test
     public void emptyUsernameAndPasswordTest() {
-    LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
-    loginPage.clickLogin();
+        loginPage.clickLogin();
 
-    Assert.assertTrue(
-        loginPage.isErrorMessageVisible(),
-        "Expected validation error message was not displayed"
-    );
-}
+        Assert.assertTrue(
+                loginPage.isErrorMessageVisible(),
+                "Expected validation error message was not displayed");
+    }
 }
