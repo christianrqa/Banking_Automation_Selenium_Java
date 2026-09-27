@@ -21,3 +21,6 @@ allure-results/
 # OS files
 .DS_Store
 Thumbs.db
+
+# JMeter results
+src/performance/results.jtl
