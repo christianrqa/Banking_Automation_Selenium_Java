@@ -7,11 +7,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.TransferConfirmationPage;
 import pages.TransferPage;
 
+@Epic("Banking Application")
+@Feature("Transfer")
 public class TransferTest extends BaseTest {
 
         @Test(groups = "regression")

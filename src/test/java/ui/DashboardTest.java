@@ -4,9 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import pages.DashboardPage;
 import pages.LoginPage;
 
+@Epic("Banking Application")
+@Feature("Dashboard")
 public class DashboardTest extends BaseTest {
 
     @Test(groups = "regression")

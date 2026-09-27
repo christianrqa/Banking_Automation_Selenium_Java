@@ -4,9 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import pages.AccountsPage;
 import pages.DashboardPage;
 import pages.LoginPage;
+
+@Epic("Banking Application")
+@Feature("Accounts")
 
 public class AccountsTest extends BaseTest {
 

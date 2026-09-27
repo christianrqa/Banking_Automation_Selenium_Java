@@ -4,14 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import pages.LoginPage;
 import utils.TestDataReader;
+
+@Epic("Banking Application")
+@Feature("Login")
 
 public class LoginTest extends BaseTest {
 
     private TestDataReader testData = new TestDataReader();
 
-    @Test (groups = "smoke")
+    @Test(groups = "smoke")
+    @Severity(SeverityLevel.BLOCKER)
     public void validLoginTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -25,7 +33,8 @@ public class LoginTest extends BaseTest {
                 "User was not successfully logged in");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void invalidUsernameTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -38,7 +47,8 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void invalidPasswordTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -51,7 +61,8 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void invalidUsernameAndPasswordTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -65,7 +76,8 @@ public class LoginTest extends BaseTest {
                 "Expected login error message was not displayed");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void loginButtonTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -79,7 +91,8 @@ public class LoginTest extends BaseTest {
                 "Login button is not enabled");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void passwordMaskingTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -91,7 +104,8 @@ public class LoginTest extends BaseTest {
                 "Password is not masked");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void emptyUsernameTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -104,7 +118,8 @@ public class LoginTest extends BaseTest {
                 "Expected validation error message was not displayed");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void emptyPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -117,7 +132,8 @@ public class LoginTest extends BaseTest {
                 "Expected validation error message was not displayed");
     }
 
-    @Test (groups = "regression")
+    @Test(groups = "regression")
+    @Severity(SeverityLevel.NORMAL)
     public void emptyUsernameAndPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
 
